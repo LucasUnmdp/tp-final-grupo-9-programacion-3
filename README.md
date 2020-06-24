@@ -1,4 +1,4 @@
-# tp-pokemones-parte-2
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+# Grupo 9
+## Trabajo Practico Pokemones (Parte 2)
 
-Que miras gil?
+
