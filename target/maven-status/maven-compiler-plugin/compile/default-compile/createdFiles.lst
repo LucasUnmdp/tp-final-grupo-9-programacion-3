@@ -1,0 +1,15 @@
+Pokemones\Main.class
+Pokemones\IClasificable.class
+Pokemones\Pokemon.class
+Pokemones\Equipo.class
+Pokemones\PokemonPlanta.class
+Pokemones\IHechizable.class
+Pokemones\Entrenador.class
+Pokemones\PeleaNulaException.class
+Pokemones\PokemonAgua.class
+Pokemones\PokemonFantasma.class
+Pokemones\PokemonHielo.class
+Pokemones\LimiteDeHechizoException.class
+Pokemones\Torneo.class
+Pokemones\PokemonFuego.class
+Pokemones\Ronda.class
