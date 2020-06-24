@@ -1,5 +1,8 @@
 package Pokemones.modelo;
 
+import Pokemones.modelo.excepciones.YaExisteEntrenadorException;
+import Pokemones.vista.Ventana;
+
 import java.util.ArrayList;
 
 /**
@@ -10,7 +13,7 @@ import java.util.ArrayList;
 public class Torneo {
 	private static Torneo instance =null;
 	private int cantidadDeEntrenadores=8 ;
-	private ArrayList<Entrenador> entrenadores = new ArrayList<Entrenador>();
+	private ArrayList<Entrenador> participantes = new ArrayList<Entrenador>();
 	public static final int cantidadDeHechizosMax=4;
 	private ArrayList<String> historial = new ArrayList<String>();
 	private ArrayList<Arena> arenas = new ArrayList<>();
@@ -42,9 +45,13 @@ public class Torneo {
 	 * <b>Post: </b>el entrenador es agregado al torneo si hay lugar<br> 
 	 * @param entrenador es el entrenador que se agrega 
 	 */
-	public void addEntrenador(Entrenador entrenador){
-		if(entrenadores.size()<this.cantidadDeEntrenadores)
-			entrenadores.add(entrenador);
+	public void addEntrenador(Entrenador entrenador) throws YaExisteEntrenadorException{
+		if(participantes.contains(entrenador)){
+			throw new YaExisteEntrenadorException();
+		}
+
+		if(participantes.size()<this.cantidadDeEntrenadores)
+			participantes.add(entrenador);
 	}
 	
 	public int getCantidadDeEntrenadores() {
@@ -65,7 +72,8 @@ public class Torneo {
 	 * @param e es un entrenador que sera removido
 	 */
 	public void removeEntrenador(Entrenador e) {
-		entrenadores.remove(e);
+		participantes.remove(e);
+		Ventana.getInstance().actualizarTorneo(participantes);
 	}
 	/**
 	 * Este metodo realiza todos los cruces del torneo, octavos de final , cuartos de final, etc. Dependiendo de la cantidadDeEntrenadores. Realiza todos los enfrentamientos y guarda en el historial los resultados.
@@ -73,7 +81,7 @@ public class Torneo {
 	 * <b>Post: </b>Se ejecuta el torneo<br>
 	 */
 	public void comienzaTorneo() {
-		ArrayList<Entrenador> participantes = new ArrayList<Entrenador>(entrenadores);
+		ArrayList<Entrenador> participantes = new ArrayList<Entrenador>(this.participantes);
 		while(participantes.size()>1) {
 			System.out.println("\n***Nuevo bracket***\n");
 			for(int i=0;i<participantes.size();i+=2) {
@@ -108,9 +116,10 @@ public class Torneo {
 		}
 		System.out.println("\n\n****!!!!! El ganador del torneo es el entrenador "+participantes.get(0).getNombre()+" !!!!!****");
 	}
-	public ArrayList<Entrenador> getEntrenadores() {
-		return entrenadores;
+	public ArrayList<Entrenador> getParticipantes() {
+		return participantes;
 	}
+
 	/**
 	 * Este metodo muestra el historial de rondas. Es preferible ejecutar antes el metodo comienzaTorneo(), para que existan algunas rondas.
 	 */

@@ -92,5 +92,11 @@ public class PokemonAgua extends Pokemon {
 		}
 		return clon;
 	}
-	
+
+	@Override
+	String getTipo() {
+		return "Agua";
+	}
+
+
 }

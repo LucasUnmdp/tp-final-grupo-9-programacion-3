@@ -87,4 +87,14 @@ public class PokemonHielo extends Pokemon {
 		
 		throw new CloneNotSupportedException("No se puede clonar");
 	}
+
+	@Override
+	String getTipo() {
+		return "Hielo";
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " (Gran recarga: "+ (granRecarga ? "SI" : "NO") +")";
+	}
 }

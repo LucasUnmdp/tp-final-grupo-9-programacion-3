@@ -1,13 +1,14 @@
 package Pokemones.vista;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
+import Pokemones.control.Controlador;
+import Pokemones.modelo.Entrenador;
+import Pokemones.modelo.Pokemon;
+
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -18,35 +19,34 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.UIManager;
-import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JTextArea;
 
 public class Ventana extends JFrame {
-
+	private static Ventana instance;
+	private Controlador controlador;
 	private JPanel contentPane;
 	private JTextField TNombreEntrenador;
 	private JTextField TNombrePokemon;
+	private JTextArea taConsola;
+	private JList listaDeEntrenadores;
+	private JList listaDePokemones;
+	private JList listaDeTorneo;
+	private JCheckBox CBGranRecarga;
+	private JComboBox ComboBoxTipo;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Ventana frame = new Ventana();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static Ventana getInstance(){
+		if(instance == null)
+			instance = new Ventana();
+		return instance;
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Ventana() {
+	private Ventana() {
+		controlador = Controlador.getInstance();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 811, 420);
 		contentPane = new JPanel();
@@ -66,8 +66,9 @@ public class Ventana extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		ConsolaEntrenadores.add(scrollPane, BorderLayout.CENTER);
 		
-		JList ListaDeEntrenadores = new JList();
-		scrollPane.setViewportView(ListaDeEntrenadores);
+		listaDeEntrenadores = new JList();
+		listaDeEntrenadores.addListSelectionListener(controlador);
+		scrollPane.setViewportView(listaDeEntrenadores);
 		
 		JPanel CreacionEntrenadores = new JPanel();
 		CreacionEntrenadores.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Crear Entrenador", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -85,6 +86,8 @@ public class Ventana extends JFrame {
 		CreacionEntrenadores.add(panel_1);
 		
 		TNombreEntrenador = new JTextField();
+		TNombreEntrenador.setActionCommand("CREAR ENTRENADOR");
+		TNombreEntrenador.addActionListener(controlador);
 		panel_1.add(TNombreEntrenador);
 		TNombreEntrenador.setColumns(10);
 		
@@ -92,15 +95,16 @@ public class Ventana extends JFrame {
 		CreacionEntrenadores.add(panel_2);
 		
 		JButton BCrearEntrenador = new JButton("Crear");
+		BCrearEntrenador.setActionCommand("CREAR ENTRENADOR");
+		BCrearEntrenador.addActionListener(controlador);
 		panel_2.add(BCrearEntrenador);
-		
-		JButton btnNewButton = new JButton("entrenar");
-		panel_2.add(btnNewButton);
 		
 		JPanel panel_12 = new JPanel();
 		CreacionEntrenadores.add(panel_12);
 		
 		JButton BEliminarEntrenadores = new JButton("Eliminar");
+		BEliminarEntrenadores.setActionCommand("ELIMINAR ENTRENADOR");
+		BEliminarEntrenadores.addActionListener(controlador);
 		panel_12.add(BEliminarEntrenadores);
 		
 		JPanel PPokemones = new JPanel();
@@ -115,8 +119,9 @@ public class Ventana extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		ConsolaPokemones.add(scrollPane_1, BorderLayout.CENTER);
 		
-		JList ListaPokemones = new JList();
-		scrollPane_1.setViewportView(ListaPokemones);
+		listaDePokemones = new JList();
+		//listaDePokemones.addListSelectionListener(controlador);
+		scrollPane_1.setViewportView(listaDePokemones);
 		
 		JPanel CreacionPokemones = new JPanel();
 		CreacionPokemones.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Crear Pokemon", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -146,21 +151,28 @@ public class Ventana extends JFrame {
 		JPanel panel_3 = new JPanel();
 		CreacionPokemones.add(panel_3);
 		
-		JComboBox ComboBoxTipo = new JComboBox();
+		ComboBoxTipo = new JComboBox();
 		panel_3.add(ComboBoxTipo);
 		ComboBoxTipo.setModel(new DefaultComboBoxModel(new String[] {"Agua", "Fuego", "Tierra", "Hielo", "Fantasma", "Planta"}));
+		ComboBoxTipo.setActionCommand("CAMBIADO TIPO POKEMON");
+		ComboBoxTipo.addActionListener(controlador);
 		ComboBoxTipo.setMaximumRowCount(6);
 		
 		JPanel panel_7 = new JPanel();
 		CreacionPokemones.add(panel_7);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Gran Recarga");
-		panel_7.add(chckbxNewCheckBox);
+		CBGranRecarga = new JCheckBox("Gran Recarga");
+		CBGranRecarga.setEnabled(false);
+		CBGranRecarga.setActionCommand("CAMBIO GRAN RECARGA");
+		CBGranRecarga.addActionListener(controlador);
+		panel_7.add(CBGranRecarga);
 		
 		JPanel panel_8 = new JPanel();
 		CreacionPokemones.add(panel_8);
 		
-		JButton BCrearPokemon = new JButton("Crear");
+		JButton BCrearPokemon = new JButton("Entrenar");
+		BCrearPokemon.setActionCommand("CREAR POKEMON");
+		BCrearPokemon.addActionListener(controlador);
 		panel_8.add(BCrearPokemon);
 		
 		JLabel lblNewLabel = new JLabel("");
@@ -169,8 +181,10 @@ public class Ventana extends JFrame {
 		JPanel panel_13 = new JPanel();
 		CreacionPokemones.add(panel_13);
 		
-		JButton btnNewButton_1 = new JButton("Eliminar");
-		panel_13.add(btnNewButton_1);
+		JButton BEliminarPokemon = new JButton("Eliminar");
+		BEliminarPokemon.setActionCommand("ELIMINAR POKEMON");
+		BEliminarPokemon.addActionListener(controlador);
+		panel_13.add(BEliminarPokemon);
 		JPanel PTorneo = new JPanel();
 		contentPane.add(PTorneo);
 		PTorneo.setLayout(new BorderLayout(0, 0));
@@ -183,8 +197,9 @@ public class Ventana extends JFrame {
 		JScrollPane scrollPane_2 = new JScrollPane();
 		ConsolaTorneo.add(scrollPane_2, BorderLayout.CENTER);
 		
-		JList list = new JList();
-		scrollPane_2.setViewportView(list);
+		listaDeTorneo = new JList();
+		listaDeTorneo.addListSelectionListener(controlador);
+		scrollPane_2.setViewportView(listaDeTorneo);
 		
 		JPanel CreaciondeTorneo = new JPanel();
 		CreaciondeTorneo.setBorder(new TitledBorder(null, "Crear Torneo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -196,18 +211,24 @@ public class Ventana extends JFrame {
 		CreaciondeTorneo.add(panel_9);
 		
 		JButton BAgregarTorneo = new JButton("Agregar");
+		BAgregarTorneo.setActionCommand("AGREGAR TORNEO");
+		BAgregarTorneo.addActionListener(controlador);
 		panel_9.add(BAgregarTorneo);
 		
 		JPanel panel_10 = new JPanel();
 		CreaciondeTorneo.add(panel_10);
 		
 		JButton BEliminarTorneo = new JButton("Eliminar");
+		BEliminarTorneo.setActionCommand("ELIMINAR TORNEO");
+		BEliminarTorneo.addActionListener(controlador);
 		panel_10.add(BEliminarTorneo);
 		
 		JPanel panel_11 = new JPanel();
 		CreaciondeTorneo.add(panel_11);
 		
 		JButton BComenzarTorneo = new JButton("Comenzar");
+		BComenzarTorneo.setActionCommand("COMENZAR TORNEO");
+		BComenzarTorneo.addActionListener(controlador);
 		panel_11.add(BComenzarTorneo);
 		JPanel PConsola = new JPanel();
 		PConsola.setBorder(new TitledBorder(null, "Consola", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -217,8 +238,58 @@ public class Ventana extends JFrame {
 		JScrollPane scrollPane_3 = new JScrollPane();
 		PConsola.add(scrollPane_3, BorderLayout.CENTER);
 		
-		JTextArea textArea = new JTextArea();
-		scrollPane_3.setViewportView(textArea);
+		taConsola = new JTextArea();
+		taConsola.setEditable(false);
+		scrollPane_3.setViewportView(taConsola);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
 
+	public void appendAConsola(String linea){
+		taConsola.append(linea+"\n");
+		taConsola.updateUI();
+	}
+
+	public void actualizarEntrenadores(ArrayList<Entrenador> lista){
+		listaDeEntrenadores.setListData(lista.toArray());
+	}
+
+	public void actualizarPokemones(ArrayList<Pokemon> lista){
+		listaDePokemones.setListData(lista.toArray());
+	}
+
+	public void actualizarTorneo(ArrayList<Entrenador> lista){
+		listaDeTorneo.setListData(lista.toArray());
+	}
+
+	public String getNombreEntrenador(){
+		return TNombreEntrenador.getText();
+	}
+
+	public String getNombrePokemon(){
+		return TNombrePokemon.getText();
+	}
+
+	public boolean getGranRecarga(){
+		return CBGranRecarga.isSelected();
+	}
+
+	public JCheckBox getCBGranRecarga(){
+		return CBGranRecarga;
+	}
+
+	public Entrenador getEntrenadorSeleccionado(){
+		return (Entrenador) listaDeEntrenadores.getSelectedValue();
+	}
+
+	public Pokemon getPokemonrSeleccionado(){
+		return (Pokemon) listaDePokemones.getSelectedValue();
+	}
+
+	public Entrenador getTorneoSeleccionado(){
+		return (Entrenador) listaDeTorneo.getSelectedValue();
+	}
+
+	public String getTipoPokemon(){
+		return (String) ComboBoxTipo.getSelectedItem();
+	}
 }

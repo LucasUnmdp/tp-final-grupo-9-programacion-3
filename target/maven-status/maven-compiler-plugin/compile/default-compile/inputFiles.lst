@@ -1,15 +1,25 @@
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\PokemonHielo.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\Torneo.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\PeleaNulaException.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\PokemonFuego.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\PokemonPlanta.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\Ronda.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\Main.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\PokemonAgua.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\Entrenador.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\IClasificable.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\IHechizable.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\LimiteDeHechizoException.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\PokemonFantasma.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\Pokemon.java
-D:\Juegos y Programas\Programacion\Eclipse\Progra3\TpCokimone\Grupo9\src\Pokemones\Equipo.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonPlanta.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonFuego.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\excepciones\YaExisteEntrenadorException.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Torneo.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonFantasma.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Entrenador.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\IClasificable.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Pokemon.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\LimpiezaArenaState.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PeleaNulaException.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\DefinicionArenaState.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonAgua.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\IHechizable.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\CerradoArenaState.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonFactory.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PreliminarArenaState.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonHielo.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\vista\Ventana.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\BatallaArenaState.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Lobby.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\LimiteDeHechizoException.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Equipo.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\ArenaState.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\control\Controlador.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Arena.java

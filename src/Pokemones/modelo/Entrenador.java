@@ -178,4 +178,13 @@ public class Entrenador implements Cloneable, IClasificable {
 			retorno="Diamante";
 		return retorno;
 	}
+
+	public void eliminarPokemon(Pokemon p){
+		pokemones.remove(p);
+	}
+
+	@Override
+	public String toString() {
+		return this.nombre;
+	}
 }

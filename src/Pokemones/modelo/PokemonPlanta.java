@@ -82,4 +82,9 @@ public class PokemonPlanta extends Pokemon {
 
 		throw new CloneNotSupportedException("No se puede clonar");
 	}
+
+	@Override
+	String getTipo() {
+		return "Planta";
+	}
 }

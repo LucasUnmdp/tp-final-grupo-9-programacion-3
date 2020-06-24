@@ -78,5 +78,10 @@ public class PokemonFuego extends Pokemon {
 		
 		throw new CloneNotSupportedException("No se puede clonar");
 	}
+
+	@Override
+	String getTipo() {
+		return "Fuego";
+	}
 	
 }

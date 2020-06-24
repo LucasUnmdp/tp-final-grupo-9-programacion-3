@@ -83,5 +83,10 @@ public class PokemonFantasma extends Pokemon {
 		}
 		return clon;
 	}
+
+	@Override
+	String getTipo() {
+		return "Fantasma";
+	}
 	
 }

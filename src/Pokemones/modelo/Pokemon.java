@@ -113,5 +113,11 @@ public abstract class Pokemon implements IHechizable,Cloneable,IClasificable{
 			retorno="nivel 3";
 		return retorno;
 	}
-	
+
+	abstract String getTipo();
+
+	@Override
+	public String toString() {
+		return nombre + " (" + getTipo() + ")";
+	}
 }
