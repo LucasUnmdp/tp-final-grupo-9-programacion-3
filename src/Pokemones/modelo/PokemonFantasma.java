@@ -8,6 +8,10 @@ package Pokemones.modelo;
  * Fuerza: 130
  */
 public class PokemonFantasma extends Pokemon {
+
+
+	public PokemonFantasma(){super();}
+
 	public PokemonFantasma(String nombre) {
 		super(nombre, 480, 90, 130);
 	}

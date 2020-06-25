@@ -8,6 +8,11 @@ package Pokemones.modelo;
  * Fuerza: 120
  */
 public class PokemonAgua extends Pokemon {
+
+	public PokemonAgua(){
+		super();
+	}
+
 	public PokemonAgua(String nombre) {
 		super(nombre, 500, 100, 120);
 	}

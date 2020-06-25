@@ -20,7 +20,6 @@ Pokemones\modelo\PokemonFuego.class
 Pokemones\modelo\PokemonFantasma.class
 Pokemones\modelo\arenastates\AbandonoArenaState.class
 Pokemones\modelo\excepciones\PeleaNulaException.class
-Pokemones\modelo\TorneoState.class
 Pokemones\modelo\PokemonAgua.class
 Pokemones\control\ControladorItem.class
 Pokemones\modelo\excepciones\YaExisteEntrenadorException.class

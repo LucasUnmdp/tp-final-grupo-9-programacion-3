@@ -2,6 +2,7 @@ package Pokemones.modelo;
 
 import Pokemones.modelo.excepciones.LimiteDeHechizoException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,7 +14,7 @@ import java.util.Random;
  *<br>
  *Clase que representa a un entrenador Pokemon. Contiene un nombre, una lista de pokemones y de cartas.
  */
-public class Entrenador implements Cloneable, IClasificable {
+public class Entrenador implements Cloneable, IClasificable, Serializable {
 	private String nombre;
 	private ArrayList<Pokemon> pokemones = new ArrayList<Pokemon>();
 	private HashMap<String, Integer> cartas = new HashMap<String, Integer>();
@@ -30,6 +31,9 @@ public class Entrenador implements Cloneable, IClasificable {
 		cartas.put("NIEBLA", 1);
 		cartas.put("VIENTO", 1);
 	}
+
+	public Entrenador(){}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -190,6 +194,30 @@ public class Entrenador implements Cloneable, IClasificable {
 
 	@Override
 	public String toString() {
-		return this.nombre;
+		return this.nombre + "(Categoria: "+getCategoria()+")";
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setPokemones(ArrayList<Pokemon> pokemones) {
+		this.pokemones = pokemones;
+	}
+
+	public HashMap<String, Integer> getCartas() {
+		return cartas;
+	}
+
+	public void setCartas(HashMap<String, Integer> cartas) {
+		this.cartas = cartas;
+	}
+
+	public int getHechizosmax() {
+		return hechizosmax;
+	}
+
+	public void setHechizosmax(int hechizosmax) {
+		this.hechizosmax = hechizosmax;
 	}
 }

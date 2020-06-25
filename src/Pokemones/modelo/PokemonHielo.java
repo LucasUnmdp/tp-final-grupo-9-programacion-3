@@ -7,6 +7,8 @@ package Pokemones.modelo;
  */
 public class PokemonHielo extends Pokemon {
 	private boolean granRecarga;
+
+	public PokemonHielo(){super();}
 	
 	public PokemonHielo(String nombre,boolean granRecarga) {
 		super(nombre, 500, 120, 100);
@@ -98,4 +100,6 @@ public class PokemonHielo extends Pokemon {
 	public String toString() {
 		return super.toString() + " (Gran recarga: "+ (granRecarga ? "SI" : "NO") +")";
 	}
+
+
 }

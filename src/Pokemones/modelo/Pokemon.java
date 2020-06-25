@@ -1,15 +1,21 @@
 package Pokemones.modelo;
 
+import java.io.Serializable;
+
 /**
  * @author Grupo 9
  * <br>
  * Clase padre de todos los Pokemones. Mantiene la xp, nombre y estadisticas.
  */
-public abstract class Pokemon implements IHechizable,Cloneable,IClasificable{
+public abstract class Pokemon implements IHechizable,Cloneable,IClasificable, Serializable {
 	private String nombre;
 	private int xp;
 	protected double vitalidad,escudo,fuerza;
-	
+
+	Pokemon(){
+
+	}
+
 	protected Pokemon(String nombre, double vitalidad,double escudo, double fuerza) {
 		this.nombre=nombre;
 		this.vitalidad=vitalidad;
@@ -127,5 +133,37 @@ public abstract class Pokemon implements IHechizable,Cloneable,IClasificable{
 	protected void finalize() throws Throwable {
 		super.finalize();
 		System.out.println("Se elimina el pokemon: "+nombre);
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setXp(int xp) {
+		this.xp = xp;
+	}
+
+	public double getVitalidad() {
+		return vitalidad;
+	}
+
+	public void setVitalidad(double vitalidad) {
+		this.vitalidad = vitalidad;
+	}
+
+	public double getEscudo() {
+		return escudo;
+	}
+
+	public void setEscudo(double escudo) {
+		this.escudo = escudo;
+	}
+
+	public double getFuerza() {
+		return fuerza;
+	}
+
+	public void setFuerza(double fuerza) {
+		this.fuerza = fuerza;
 	}
 }

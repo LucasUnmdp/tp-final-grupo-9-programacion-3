@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_231" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="Pokemones.modelo.Entrenador" id="Entrenador0">
+    <void property="cartas">
+     <void method="put">
+      <string>VIENTO</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>NIEBLA</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>TORMENTA</string>
+      <int>1</int>
+     </void>
+    </void>
+    <void property="nombre">
+     <string>dou</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Pokemones.modelo.Entrenador" id="Entrenador1">
+    <void property="cartas">
+     <void method="put">
+      <string>VIENTO</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>NIEBLA</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>TORMENTA</string>
+      <int>1</int>
+     </void>
+    </void>
+    <void property="nombre">
+     <string>Doende</string>
+    </void>
+    <void property="pokemones">
+     <void method="add">
+      <object class="Pokemones.modelo.PokemonAgua">
+       <void property="escudo">
+        <double>100.0</double>
+       </void>
+       <void property="fuerza">
+        <double>120.0</double>
+       </void>
+       <void property="nombre">
+        <string>asd</string>
+       </void>
+       <void property="vitalidad">
+        <double>500.0</double>
+       </void>
+      </object>
+     </void>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Pokemones.modelo.Entrenador" id="Entrenador2">
+    <void property="cartas">
+     <void method="put">
+      <string>VIENTO</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>NIEBLA</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>TORMENTA</string>
+      <int>1</int>
+     </void>
+    </void>
+    <void property="nombre">
+     <string>asd</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Pokemones.modelo.Entrenador" id="Entrenador3">
+    <void property="cartas">
+     <void method="put">
+      <string>VIENTO</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>NIEBLA</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>TORMENTA</string>
+      <int>1</int>
+     </void>
+    </void>
+    <void property="nombre">
+     <string>qwe</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Pokemones.modelo.Entrenador" id="Entrenador4">
+    <void property="cartas">
+     <void method="put">
+      <string>VIENTO</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>NIEBLA</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>TORMENTA</string>
+      <int>1</int>
+     </void>
+    </void>
+    <void property="nombre">
+     <string>Franquito</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="Pokemones.modelo.Entrenador" id="Entrenador5">
+    <void property="cartas">
+     <void method="put">
+      <string>VIENTO</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>NIEBLA</string>
+      <int>1</int>
+     </void>
+     <void method="put">
+      <string>TORMENTA</string>
+      <int>1</int>
+     </void>
+    </void>
+    <void property="nombre">
+     <string>Pablo</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>

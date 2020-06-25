@@ -226,4 +226,59 @@ public class Arena {
 		this.peleaActual = peleaActual;
 	}
 
+	public static int getCantArenas() {
+		return cantArenas;
+	}
+
+	public static void setCantArenas(int cantArenas) {
+		Arena.cantArenas = cantArenas;
+	}
+
+	public ArenaState getState() {
+		return state;
+	}
+
+	public void setState(ArenaState state) {
+		this.state = state;
+	}
+
+	public Equipo getEquipo1() {
+		return equipo1;
+	}
+
+	public void setEquipo1(Equipo equipo1) {
+		this.equipo1 = equipo1;
+	}
+
+	public Equipo getEquipo2() {
+		return equipo2;
+	}
+
+	public void setEquipo2(Equipo equipo2) {
+		this.equipo2 = equipo2;
+	}
+
+	public Equipo getGanador() {
+		return ganador;
+	}
+
+	public void setGanador(Equipo ganador) {
+		this.ganador = ganador;
+	}
+
+	public Equipo getPerdedor() {
+		return perdedor;
+	}
+
+	public void setPerdedor(Equipo perdedor) {
+		this.perdedor = perdedor;
+	}
+
+	public boolean isEstaLibre() {
+		return estaLibre;
+	}
+
+	public void setEstaLibre(boolean estaLibre) {
+		this.estaLibre = estaLibre;
+	}
 }

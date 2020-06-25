@@ -5,6 +5,7 @@ import Pokemones.modelo.excepciones.TorneoParticipantesException;
 import Pokemones.modelo.excepciones.YaExisteEntrenadorException;
 import Pokemones.vista.Ventana;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,21 +14,20 @@ import java.util.Random;
  * Torneo <br>
  * esta clase simula un torneo, tiene entrenadores que se enfrentaran en batallas, tambien guarda un historial de esos enfrentamientos.
  */
-public class Torneo {
+public class Torneo implements Serializable {
     private static Torneo instance = null;
     private int cantidadDeEntrenadores;
     private ArrayList<Entrenador> participantes = new ArrayList<Entrenador>();
     public static final int cantidadDeHechizosMax = 4;
-    private ArrayList<String> historial = new ArrayList<String>();
     private ArrayList<Arena> arenas = new ArrayList<>();
     private boolean enPreparacion = true;
 
     private Torneo() {
-        crearArenas();
     }
 
     public void inicializar() {
         setCantidadDeEntrenadores(8);
+        crearArenas();
     }
 
     /**
@@ -160,16 +160,6 @@ public class Torneo {
         return participantes;
     }
 
-    /**
-     * Este metodo muestra el historial de rondas. Es preferible ejecutar antes el metodo comienzaTorneo(), para que existan algunas rondas.
-     */
-    public void historialDeRondas() {
-        System.out.println("\n");
-        for (String s : historial) {
-            System.out.println(s);
-        }
-    }
-
     private Arena arenaLibre() {
         Arena encontrada = null;
         for (Arena a : arenas) {
@@ -179,5 +169,25 @@ public class Torneo {
             }
         }
         return encontrada;
+    }
+
+    public void setParticipantes(ArrayList<Entrenador> participantes) {
+        this.participantes = participantes;
+    }
+
+    public ArrayList<Arena> getArenas() {
+        return arenas;
+    }
+
+    public void setArenas(ArrayList<Arena> arenas) {
+        this.arenas = arenas;
+    }
+
+    public boolean isEnPreparacion() {
+        return enPreparacion;
+    }
+
+    public void setEnPreparacion(boolean enPreparacion) {
+        this.enPreparacion = enPreparacion;
     }
 }

@@ -6,6 +6,9 @@ package Pokemones.modelo;
  * es un pokemon que tiene vitalidad=600 escudo=180 y fuerza=50
  */
 public class PokemonPlanta extends Pokemon {
+
+	public PokemonPlanta(){super();}
+
 	public PokemonPlanta(String nombre) {
 		super(nombre, 600, 180, 50);
 	}
@@ -88,4 +91,6 @@ public class PokemonPlanta extends Pokemon {
 	String getTipo() {
 		return "Planta";
 	}
+
+
 }
