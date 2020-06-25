@@ -1,5 +1,6 @@
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonPlanta.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonFuego.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\control\ControladorItem.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\excepciones\YaExisteEntrenadorException.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Torneo.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonFantasma.java
@@ -17,9 +18,10 @@ C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PreliminarArenaState.ja
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\PokemonHielo.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\vista\Ventana.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\BatallaArenaState.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\control\ControladorGeneral.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Lobby.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\LimiteDeHechizoException.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Equipo.java
+C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Pelea.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\ArenaState.java
-C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\control\Controlador.java
 C:\Users\lucag\Desktop\tp pokimones\src\Pokemones\modelo\Arena.java

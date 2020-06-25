@@ -39,8 +39,9 @@ public class Lobby {
 	}
 
 	private Lobby(){
+        Ventana.getInstance().inicializar();
+        Ventana.getInstance().crearVentana();
 	    ControladorGeneral.getInstance();
-	    Ventana.getInstance().inicializar();
 	    Torneo.getInstance().inicializar();
         ventana = Ventana.getInstance();
         ventana.setVisible(true);
