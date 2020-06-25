@@ -16,6 +16,7 @@ Pokemones\modelo\PokemonPlanta.class
 Pokemones\vista\Ventana.class
 Pokemones\modelo\Arena.class
 Pokemones\modelo\IHechizable.class
+Pokemones\control\ControladorConsola.class
 Pokemones\control\ControladorGeneral.class
 Pokemones\modelo\PokemonFuego.class
 Pokemones\modelo\PokemonFantasma.class

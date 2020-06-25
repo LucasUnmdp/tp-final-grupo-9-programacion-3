@@ -1,4 +1,4 @@
-package Pokemones.modelo;
+package Pokemones.modelo.excepciones;
 
 /**
  * @author Grupo 9

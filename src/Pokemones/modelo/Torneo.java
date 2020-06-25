@@ -1,5 +1,6 @@
 package Pokemones.modelo;
 
+import Pokemones.modelo.arenastates.CerradoArenaState;
 import Pokemones.modelo.excepciones.YaExisteEntrenadorException;
 import Pokemones.vista.Ventana;
 
@@ -103,18 +104,6 @@ public class Torneo {
 			/*
 			for(Arena r: arenas) {
 
-				System.out.println("\n----Pelea: " + r.getE1().getNombre() + " Vs " + r.getE2().getNombre() + "----");
-				try {
-					r.combate();
-					r.resultado();
-					r.recompensas();
-					r.removerMuertos();
-					historial.add(r.toString());
-				} catch (PeleaNulaException e) {
-					r.resultado();
-					historial.add("-- Ganador por abandono " + r.ganador().getE().getNombre());
-					System.out.println(e.getMessage());
-				}
 				participantes.remove(r.perdedor().getE());
 				System.out.println("Gano el entrenador " + r.ganador().getE().getNombre());
 			}*/

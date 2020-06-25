@@ -1,4 +1,7 @@
-package Pokemones.modelo;
+package Pokemones.modelo.arenastates;
+
+import Pokemones.modelo.Arena;
+import Pokemones.modelo.ArenaState;
 
 public class DefinicionArenaState implements ArenaState {
     private Arena arena;
@@ -10,8 +13,9 @@ public class DefinicionArenaState implements ArenaState {
     @Override
     public void etapa() {
         //Se define xd
-
+        arena.resultado();
+        arena.recompensas();
+        arena.removerMuertos();
         arena.setArenaState(new LimpiezaArenaState(arena));
-        notifyAll();
     }
 }

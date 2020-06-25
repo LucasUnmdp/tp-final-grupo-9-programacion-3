@@ -219,7 +219,6 @@ public class Ventana extends JFrame {
 		CreaciondeTorneo.add(panel_14);
 
 		CBParticipantes = new JComboBox();
-
 		CBParticipantes.addItemListener(ControladorItem.getInstance());
 		panel_14.add(CBParticipantes);
 		CBParticipantes.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "8", "16", "32", "64"}));
@@ -246,7 +245,7 @@ public class Ventana extends JFrame {
 		JPanel panel_11 = new JPanel();
 		CreaciondeTorneo.add(panel_11);
 
-		JButton BComenzarTorneo = new JButton("Comenzar");
+		JButton BComenzarTorneo = new JButton("Siguiente Etapa");
 		BComenzarTorneo.setActionCommand("COMENZAR TORNEO");
 		BComenzarTorneo.addActionListener(controladorGeneral);
 		panel_11.add(BComenzarTorneo);
@@ -315,6 +314,7 @@ public class Ventana extends JFrame {
 
 	public int getCantParticipantes(){
 		assert CBParticipantes.getSelectedItem() != null;
+		System.out.println("(String) CBParticipantes.getSelectedItem()");
 		return Integer.parseInt((String) CBParticipantes.getSelectedItem());
 	}
 
@@ -322,7 +322,7 @@ public class Ventana extends JFrame {
 		if(esInicializacion){
 			CBParticipantes.removeItemListener(ControladorItem.getInstance());
 			CBParticipantes.setSelectedItem(String.valueOf(num));
-			CBParticipantes.removeItemListener(ControladorItem.getInstance());
+			CBParticipantes.addItemListener(ControladorItem.getInstance());
 		}else{
 			CBParticipantes.setSelectedItem(String.valueOf(num));
 		}

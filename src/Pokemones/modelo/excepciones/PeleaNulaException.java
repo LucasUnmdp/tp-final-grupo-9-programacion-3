@@ -1,4 +1,4 @@
-package Pokemones.modelo;
+package Pokemones.modelo.excepciones;
 
 @SuppressWarnings("serial")
 public class PeleaNulaException extends Exception{

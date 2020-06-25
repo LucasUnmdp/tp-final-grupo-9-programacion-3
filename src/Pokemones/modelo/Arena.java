@@ -1,5 +1,9 @@
 package Pokemones.modelo;
 
+import Pokemones.modelo.arenastates.PreliminarArenaState;
+import Pokemones.modelo.excepciones.LimiteDeHechizoException;
+import Pokemones.modelo.excepciones.PeleaNulaException;
+
 /**
  * @author Grupo 9 
  * Objeto representativo de una ronda. Consiste en dos equipos
@@ -19,10 +23,10 @@ public class Arena {
     private Equipo ganador;
     private Equipo perdedor;
 
-	public Arena() {// el entrenador tiene que tener almenos un pokemon
+	public Arena() {// el entrenador tiene que tener al menos un pokemon
 		cantArenas++;
 		nombreArena = "Arena "+cantArenas;
-		state = new LimpiezaArenaState(this);
+		state = new PreliminarArenaState(this);
 	}
 
 	public void setEntrenadores(Entrenador e1, Entrenador e2){
@@ -49,24 +53,24 @@ public class Arena {
 		Pokemon p1 = equipo1.getP();
 		if (p2 != null && p1 != null) {
 			try {
-				equipo1.getE().hechiza(p2);
+				peleaActual.log(equipo1.getE().hechiza(p2));
 			} catch (LimiteDeHechizoException e) {
-				System.out.println(e.getMessage());
+				peleaActual.log(e.getMessage());
 			}
 			try {
-				equipo2.getE().hechiza(p1);
+				peleaActual.log(equipo2.getE().hechiza(p1));
 			} catch (LimiteDeHechizoException e) {
-				System.out.println(e.getMessage());
+				peleaActual.log(e.getMessage());
 			}
 			if (Math.random() >= 0.5) {
-				System.out.println(p1.getNombre() + " ataca a " + p2.getNombre());
+				peleaActual.log(p1.getNombre() + " ataca a " + p2.getNombre());
 				p1.ataca(p2);
-				System.out.println(p2.getNombre() + " contrataca a " + p1.getNombre());
+				peleaActual.log(p2.getNombre() + " contrataca a " + p1.getNombre());
 				p2.ataca(p1);
 			} else {
-				System.out.println(p2.getNombre() + " ataca a " + p1.getNombre());
+				peleaActual.log(p2.getNombre() + " ataca a " + p1.getNombre());
 				p2.ataca(p1);
-				System.out.println(p1.getNombre() + " contrataca a " + p2.getNombre());
+				peleaActual.log(p1.getNombre() + " contrataca a " + p2.getNombre());
 				p1.ataca(p2);
 			}
 		} else {
@@ -95,13 +99,9 @@ public class Arena {
 		if (ganador == equipo1.getE()) {
 			equipo2.getE().removePokemon(p2);
 			equipo1.getE().addPokemon(p2);
-			// p1.addXp(3);
-			// p2.addXp(1);
 		} else {
 			equipo1.getE().removePokemon(p1);
 			equipo2.getE().addPokemon(p1);
-			// p2.addXp(3);
-			// p1.addXp(1);
 		}
 	}
 
@@ -207,6 +207,14 @@ public class Arena {
 	}
 
 	public boolean estaLibre(){
-		return state.getClass().equals(LimpiezaArenaState.class);
+		return state.getClass().equals(PreliminarArenaState.class);
+	}
+
+	public Pelea getPeleaActual() {
+		return peleaActual;
+	}
+
+	public void setPeleaActual(Pelea peleaActual) {
+		this.peleaActual = peleaActual;
 	}
 }

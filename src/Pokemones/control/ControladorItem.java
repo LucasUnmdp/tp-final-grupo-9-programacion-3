@@ -12,6 +12,7 @@ public class ControladorItem implements ActionListener, ItemListener {
     private static ControladorItem instance;
     @Override
     public void actionPerformed(ActionEvent e) {
+
     }
 
     public static ControladorItem getInstance(){
@@ -23,5 +24,6 @@ public class ControladorItem implements ActionListener, ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         Torneo.getInstance().setCantidadDeEntrenadores(Ventana.getInstance().getCantParticipantes());
+        System.out.println(Torneo.getInstance().getCantidadDeEntrenadores());
     }
 }

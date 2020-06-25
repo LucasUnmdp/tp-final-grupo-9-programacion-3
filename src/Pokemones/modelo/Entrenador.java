@@ -1,5 +1,7 @@
 package Pokemones.modelo;
 
+import Pokemones.modelo.excepciones.LimiteDeHechizoException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -98,33 +100,36 @@ public class Entrenador implements Cloneable, IClasificable {
 	 * @param p Pokemon enemigo al cual se quiere hechizar.
 	 * @throws LimiteDeHechizoException Excepcion lanzada cuando el entrenador quiere lanzar un hechizo y llego a su limite de hechizos.
 	 */
-	public void hechiza(Pokemon p) throws LimiteDeHechizoException {
+	public String hechiza(Pokemon p) throws LimiteDeHechizoException {
 		double random = Math.random();
+		String logLocal = "";
+
 		int aux;
 		if (this.hechizosmax > 0) {
 			if (random <= 0.33 && cartas.get("NIEBLA") > 0) {
 				this.hechizosmax--;
 				p.niebla();
-				System.out.println(this.nombre + " utiliza NIEBLA contra " + p.getNombre());
+				logLocal = this.nombre + " utiliza NIEBLA contra " + p.getNombre();
 				aux = cartas.get("NIEBLA") - 1;
 				cartas.replace("NIEBLA", aux);
 			} else if (random <= 0.66 && cartas.get("VIENTO") > 0) {
 				this.hechizosmax--;
 				p.viento();
-				System.out.println(this.nombre + " utiliza VIENTO contra " + p.getNombre());
+				logLocal = this.nombre + " utiliza VIENTO contra " + p.getNombre();
 				aux = cartas.get("VIENTO") - 1;
 				cartas.replace("VIENTO", aux);
 			} else if (cartas.get("TORMENTA") > 0) {
 				this.hechizosmax--;
 				p.tormenta();
-				System.out.println(this.nombre + " utiliza TORMENTA contra " + p.getNombre());
+				logLocal = this.nombre + " utiliza TORMENTA contra " + p.getNombre();
 				aux = cartas.get("TORMENTA") - 1;
 				cartas.replace("TORMENTA", aux);
 			} else
-				System.out.println(this.nombre + "No utiliza hechizo");
+				logLocal = this.nombre + "No utiliza hechizo";
 		} else {
 			throw new LimiteDeHechizoException("Limite de hechizos lanzados por " + this.nombre);
 		}
+		return logLocal;
 	}
 
 	/**
