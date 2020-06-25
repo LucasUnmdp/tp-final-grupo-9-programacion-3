@@ -157,7 +157,7 @@ public class Ventana extends JFrame {
 
 		ComboBoxTipo = new JComboBox();
 		panel_3.add(ComboBoxTipo);
-		ComboBoxTipo.setModel(new DefaultComboBoxModel(new String[] {"Agua", "Fuego", "Tierra", "Hielo", "Fantasma", "Planta"}));
+		ComboBoxTipo.setModel(new DefaultComboBoxModel(new String[] {"Agua", "Fuego", "Hielo", "Fantasma", "Planta"}));
 		ComboBoxTipo.setActionCommand("CAMBIADO TIPO POKEMON");
 		ComboBoxTipo.addActionListener(controladorGeneral);
 		ComboBoxTipo.setMaximumRowCount(6);

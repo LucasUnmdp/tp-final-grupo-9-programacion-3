@@ -14,107 +14,111 @@ import java.util.Random;
  * esta clase simula un torneo, tiene entrenadores que se enfrentaran en batallas, tambien guarda un historial de esos enfrentamientos.
  */
 public class Torneo {
-	private static Torneo instance =null;
-	private int cantidadDeEntrenadores;
-	private ArrayList<Entrenador> participantes = new ArrayList<Entrenador>();
-	public static final int cantidadDeHechizosMax=4;
-	private ArrayList<String> historial = new ArrayList<String>();
-	private ArrayList<Arena> arenas = new ArrayList<>();
-	private boolean enPreparacion = true;
+    private static Torneo instance = null;
+    private int cantidadDeEntrenadores;
+    private ArrayList<Entrenador> participantes = new ArrayList<Entrenador>();
+    public static final int cantidadDeHechizosMax = 4;
+    private ArrayList<String> historial = new ArrayList<String>();
+    private ArrayList<Arena> arenas = new ArrayList<>();
+    private boolean enPreparacion = true;
 
-    private Torneo(){
-		crearArenas();
-	}
+    private Torneo() {
+        crearArenas();
+    }
 
-	public void inicializar(){
-    	setCantidadDeEntrenadores(8);
-	}
+    public void inicializar() {
+        setCantidadDeEntrenadores(8);
+    }
 
-	/**
-	 * La clase torneo responde al patron singleton.
-	 */
-	public static Torneo getInstance() {
-		if(instance==null) 
-			instance=new Torneo();
-		return Torneo.instance;
-	}
+    /**
+     * La clase torneo responde al patron singleton.
+     */
+    public static Torneo getInstance() {
+        if (instance == null)
+            instance = new Torneo();
+        return Torneo.instance;
+    }
 
-	private void crearArenas(){
-		for(int i=0; i<4; i++)
-			arenas.add(new Arena());
-		Arena aCerrada = new Arena();
-		aCerrada.setArenaState(new CerradoArenaState(aCerrada));
-		arenas.add(aCerrada);
-	}
-
-
-	/**
-	 * Este metodo agrega entrenador a la lista de entrenadores del torneo.
-	 * <b>Pre: </b>el pametro entrenador debe ser distinto de null<br>
-	 * <b>Post: </b>el entrenador es agregado al torneo si hay lugar<br> 
-	 * @param entrenador es el entrenador que se agrega 
-	 */
-	public void addEntrenador(Entrenador entrenador) throws YaExisteEntrenadorException{
-		if(participantes.contains(entrenador)){
-			throw new YaExisteEntrenadorException();
-		}
-
-		if(participantes.size()<this.cantidadDeEntrenadores)
-			participantes.add(entrenador);
-	}
-	
-	public int getCantidadDeEntrenadores() {
-		return cantidadDeEntrenadores;
-	}
-	/**
-	 * <b>Pre: </b>La cantidad de entrenadores debera ser pontencia de 2, osea 2,4,8,16...<br>
-	 * <b>Post: </b>Es establecida la cantidad de entrenadores que tendra el torneo<br>
-	 * @param cantidadDeEntrenadores sera la cantidad de jugadores que admitira el torneo
-	 */
-	public void setCantidadDeEntrenadores(int cantidadDeEntrenadores) {
-		this.cantidadDeEntrenadores = cantidadDeEntrenadores;
-		Ventana.getInstance().setCantParticipantes(cantidadDeEntrenadores, true);
-	}
-	
-	/**
-	 * <b>Pre: </b>El entrenador e debe pertener a la lista y distinto de null<br>
-	 * <b>Post: </b>el entrenador sera removio de la lista de entrenadores del toreno<br>
-	 * @param e es un entrenador que sera removido
-	 */
-	public void removeEntrenador(Entrenador e) {
-		participantes.remove(e);
-		Ventana.getInstance().actualizarTorneo(participantes);
-	}
+    private void crearArenas() {
+        for (int i = 0; i < 4; i++)
+            arenas.add(new Arena());
+        Arena aCerrada = new Arena();
+        aCerrada.setArenaState(new CerradoArenaState(aCerrada));
+        arenas.add(aCerrada);
+    }
 
 
-	public void siguienteEtapa() throws TorneoParticipantesException {
-		if(enPreparacion){
-			if(participantes.size() != cantidadDeEntrenadores)
-				throw new TorneoParticipantesException();
-			else{
-				enPreparacion = false;
-				bracketTorneo();
-			}
-		}else{
-			bracketTorneo();
-		}
-	}
+    /**
+     * Este metodo agrega entrenador a la lista de entrenadores del torneo.
+     * <b>Pre: </b>el pametro entrenador debe ser distinto de null<br>
+     * <b>Post: </b>el entrenador es agregado al torneo si hay lugar<br>
+     *
+     * @param entrenador es el entrenador que se agrega
+     */
+    public void addEntrenador(Entrenador entrenador) throws YaExisteEntrenadorException {
+        if (participantes.contains(entrenador)) {
+            throw new YaExisteEntrenadorException();
+        }
 
-	/**
-	 * Este metodo realiza todos los cruces del torneo, octavos de final , cuartos de final, etc. Dependiendo de la cantidadDeEntrenadores. Realiza todos los enfrentamientos y guarda en el historial los resultados.
-	 * <b>Pre: </b>la cantidad de entrenadores en la lista de entrenadores es igual a la cantidadDeEntrenadores establecida<br>
-	 * <b>Post: </b>Se ejecuta el torneo<br>
-	 */
-	public void bracketTorneo() {
-		ArrayList<Pelea> peleas = new ArrayList<>();
+        if (participantes.size() < this.cantidadDeEntrenadores)
+            participantes.add(entrenador);
+    }
 
-		//System.out.println("\n***Nuevo bracket***\n");
-		Ventana.getInstance().appendAConsola("Comienza Bracket (Participantes: "+participantes.size());
+    public int getCantidadDeEntrenadores() {
+        return cantidadDeEntrenadores;
+    }
 
-		for(int i=0;i<participantes.size();i+=2) {
+    /**
+     * <b>Pre: </b>La cantidad de entrenadores debera ser pontencia de 2, osea 2,4,8,16...<br>
+     * <b>Post: </b>Es establecida la cantidad de entrenadores que tendra el torneo<br>
+     *
+     * @param cantidadDeEntrenadores sera la cantidad de jugadores que admitira el torneo
+     */
+    public void setCantidadDeEntrenadores(int cantidadDeEntrenadores) {
+        this.cantidadDeEntrenadores = cantidadDeEntrenadores;
+        Ventana.getInstance().setCantParticipantes(cantidadDeEntrenadores, true);
+    }
+
+    /**
+     * <b>Pre: </b>El entrenador e debe pertener a la lista y distinto de null<br>
+     * <b>Post: </b>el entrenador sera removio de la lista de entrenadores del toreno<br>
+     *
+     * @param e es un entrenador que sera removido
+     */
+    public void removeEntrenador(Entrenador e) {
+        participantes.remove(e);
+        Ventana.getInstance().actualizarTorneo(participantes);
+    }
 
 
-			//VIEJO
+    public void siguienteEtapa() throws TorneoParticipantesException {
+        if (enPreparacion) {
+            if (participantes.size() != cantidadDeEntrenadores)
+                throw new TorneoParticipantesException();
+            else {
+                enPreparacion = false;
+                bracketTorneo();
+            }
+        } else {
+            bracketTorneo();
+        }
+    }
+
+    /**
+     * Este metodo realiza todos los cruces del torneo, octavos de final , cuartos de final, etc. Dependiendo de la cantidadDeEntrenadores. Realiza todos los enfrentamientos y guarda en el historial los resultados.
+     * <b>Pre: </b>la cantidad de entrenadores en la lista de entrenadores es igual a la cantidadDeEntrenadores establecida<br>
+     * <b>Post: </b>Se ejecuta el torneo<br>
+     */
+    public void bracketTorneo() {
+        ArrayList<Pelea> peleas = new ArrayList<>();
+
+        //System.out.println("\n***Nuevo bracket***\n");
+        Ventana.getInstance().appendAConsola("Comienza Bracket (Participantes: " + participantes.size() + ")");
+
+        for (int i = 0; i < participantes.size(); i += 2) {
+
+
+            //VIEJO
 			/*Arena prox = arenaLibre();
 			while(prox==null){
 				try {
@@ -123,57 +127,57 @@ public class Torneo {
 				} catch (InterruptedException e) { e.printStackTrace(); }
 			}*/
 
-			Arena prox = arenaLibre();
-			if(prox == null){
-				prox = arenas.get(new Random().nextInt(arenas.size()-1));
-			}
-			//prox.setEntrenadores(participantes.get(i), participantes.get(i+1));
-			prox.setLibre(false);
-			Pelea p = new Pelea(prox);
-			p.setEntrenadores(participantes.get(i), participantes.get(i+1));
-			peleas.add(p);
-			p.setEnProgreso(true);
-			p.start();
-		}
+            Arena prox = arenaLibre();
+            if (prox == null) {
+                prox = arenas.get(new Random().nextInt(arenas.size() - 1));
+            }
+            //prox.setEntrenadores(participantes.get(i), participantes.get(i+1));
+            prox.setLibre(false);
+            Pelea p = new Pelea(prox);
+            p.setEntrenadores(participantes.get(i), participantes.get(i + 1));
+            peleas.add(p);
+            p.setEnProgreso(true);
+            p.start();
+        }
 
-		for(Pelea p : peleas){
-			p.imprimirLog();
-		}
+        for (Pelea p : peleas) {
+            p.imprimirLog();
+        }
 
-		for(Pelea p:peleas){
-			participantes.remove(p.getPerdedor().getE());
-		}
+        for (Pelea p : peleas) {
+            participantes.remove(p.getPerdedor().getE());
+        }
 
-		if(participantes.size()==1){
-			Ventana.getInstance().appendAConsola("EL GANADOR DEL TORNEO ES: "+participantes.get(0).getNombre());
-			enPreparacion = true;
-		}else {
-			Ventana.getInstance().actualizarTorneo(participantes);
-		}
-	}
+        if (participantes.size() == 1) {
+            Ventana.getInstance().appendAConsola("EL GANADOR DEL TORNEO ES: " + participantes.get(0).getNombre());
+            enPreparacion = true;
+        }
+        Ventana.getInstance().actualizarTorneo(participantes);
 
-	public ArrayList<Entrenador> getParticipantes() {
-		return participantes;
-	}
+    }
 
-	/**
-	 * Este metodo muestra el historial de rondas. Es preferible ejecutar antes el metodo comienzaTorneo(), para que existan algunas rondas.
-	 */
-	public void historialDeRondas() {
-		System.out.println("\n");
-		for(String s:historial) {
-			System.out.println(s);
-		}
-	}
+    public ArrayList<Entrenador> getParticipantes() {
+        return participantes;
+    }
 
-	private Arena arenaLibre(){
-		Arena encontrada = null;
-		for(Arena a : arenas){
-			if(a.estaLibre()) {
-				encontrada = a;
-				break;
-			}
-		}
-		return encontrada;
-	}
+    /**
+     * Este metodo muestra el historial de rondas. Es preferible ejecutar antes el metodo comienzaTorneo(), para que existan algunas rondas.
+     */
+    public void historialDeRondas() {
+        System.out.println("\n");
+        for (String s : historial) {
+            System.out.println(s);
+        }
+    }
+
+    private Arena arenaLibre() {
+        Arena encontrada = null;
+        for (Arena a : arenas) {
+            if (a.estaLibre()) {
+                encontrada = a;
+                break;
+            }
+        }
+        return encontrada;
+    }
 }
