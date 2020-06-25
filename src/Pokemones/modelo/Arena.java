@@ -1,5 +1,6 @@
 package Pokemones.modelo;
 
+import Pokemones.modelo.arenastates.CerradoArenaState;
 import Pokemones.modelo.arenastates.PreliminarArenaState;
 import Pokemones.modelo.excepciones.LimiteDeHechizoException;
 import Pokemones.modelo.excepciones.PeleaNulaException;
@@ -23,10 +24,13 @@ public class Arena {
     private Equipo ganador;
     private Equipo perdedor;
 
+    private boolean estaLibre;
+
 	public Arena() {// el entrenador tiene que tener al menos un pokemon
 		cantArenas++;
 		nombreArena = "Arena "+cantArenas;
 		state = new PreliminarArenaState(this);
+		estaLibre = true;
 	}
 
 	public void setEntrenadores(Entrenador e1, Entrenador e2){
@@ -207,14 +211,19 @@ public class Arena {
 	}
 
 	public boolean estaLibre(){
-		return state.getClass().equals(PreliminarArenaState.class);
+		return estaLibre && !getArenaState().getClass().equals(CerradoArenaState.class);
+	}
+
+	public void setLibre(boolean set){
+		estaLibre = set;
 	}
 
 	public Pelea getPeleaActual() {
 		return peleaActual;
 	}
 
-	public void setPeleaActual(Pelea peleaActual) {
+	public synchronized void setPeleaActual(Pelea peleaActual) {
 		this.peleaActual = peleaActual;
 	}
+
 }

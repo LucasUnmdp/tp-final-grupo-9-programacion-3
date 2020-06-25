@@ -44,11 +44,12 @@ public class PokemonHielo extends Pokemon {
 	}
 
 	@Override
-	protected void recarga() {
+	protected String recarga() {
 		if(granRecarga){
 			fuerza = 400;
+			return getNombre()+" recargó.";
 		}else{
-			super.recarga();
+			return super.recarga();
 		}
 	}
 

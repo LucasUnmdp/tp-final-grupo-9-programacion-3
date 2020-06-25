@@ -26,8 +26,9 @@ public class PokemonPlanta extends Pokemon {
 	 * Este metodo realiza una recarga de vitalidad<br>
 	 * <b>Post: </b>El pokemon actual realizara una recarga<br>
 	 */
-	protected void recarga() {
+	protected String recarga() {
 		this.vitalidad *= 1.5;
+		return getNombre() + " recargó.";
 	}
 
 	/**

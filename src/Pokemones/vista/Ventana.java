@@ -23,6 +23,7 @@ import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 public class Ventana extends JFrame {
 	private static Ventana instance;
@@ -69,6 +70,7 @@ public class Ventana extends JFrame {
 		ConsolaEntrenadores.add(scrollPane, BorderLayout.CENTER);
 
 		listaDeEntrenadores = new JList();
+		listaDeEntrenadores.addKeyListener(ControladorGeneral.getInstance());
 		listaDeEntrenadores.addListSelectionListener(controladorGeneral);
 		scrollPane.setViewportView(listaDeEntrenadores);
 
@@ -121,7 +123,7 @@ public class Ventana extends JFrame {
 		JScrollPane scrollPane_1 = new JScrollPane();
 		ConsolaPokemones.add(scrollPane_1, BorderLayout.CENTER);
 
-		listaDePokemones = new JList();
+		listaDePokemones = new JList<Pokemon>();
 		//listaDePokemones.addListSelectionListener(controladorGeneral);
 		scrollPane_1.setViewportView(listaDePokemones);
 
@@ -259,6 +261,8 @@ public class Ventana extends JFrame {
 
 		taConsola = new JTextArea();
 		taConsola.setEditable(false);
+		DefaultCaret caret = (DefaultCaret) taConsola.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		scrollPane_3.setViewportView(taConsola);
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 	}
@@ -270,14 +274,20 @@ public class Ventana extends JFrame {
 
 	public void actualizarEntrenadores(ArrayList<Entrenador> lista){
 		listaDeEntrenadores.setListData(lista.toArray());
+		repaint();
 	}
 
 	public void actualizarPokemones(ArrayList<Pokemon> lista){
-		listaDePokemones.setListData(lista.toArray());
+		if(lista.size()>0)
+			listaDePokemones.setListData(lista.toArray());
+		else
+			listaDePokemones.setListData(new ArrayList().toArray());
+		repaint();
 	}
 
 	public void actualizarTorneo(ArrayList<Entrenador> lista){
 		listaDeTorneo.setListData(lista.toArray());
+		repaint();
 	}
 
 	public String getNombreEntrenador(){

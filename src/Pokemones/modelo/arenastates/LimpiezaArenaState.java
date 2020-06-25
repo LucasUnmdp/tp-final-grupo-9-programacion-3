@@ -2,6 +2,7 @@ package Pokemones.modelo.arenastates;
 
 import Pokemones.modelo.Arena;
 import Pokemones.modelo.ArenaState;
+import Pokemones.vista.Ventana;
 
 public class LimpiezaArenaState implements ArenaState {
     private Arena arena;
@@ -12,10 +13,9 @@ public class LimpiezaArenaState implements ArenaState {
 
     @Override
     public void etapa() {
-        arena.getPeleaActual().log("-- " + arena.ganador().getE().getNombre() + " (" + arena.ganador().getP().getNombre() + ") Gano contra "
-                + arena.perdedor().getE().getNombre() + " (" + arena.perdedor().getP().getNombre() + ")");
-        //System.out.println("La arena \""+arena.getNombreArena()+"\" se esta limpiando para la siguiente batalla...");
+        arena.getPeleaActual().log("---" + arena.ganador().getE().getNombre() + " Gano contra "
+                + arena.perdedor().getE().getNombre() + "---");
+        arena.getPeleaActual().log("La arena \"" + arena.getNombreArena() + "\" se esta limpiando para la siguiente batalla...");
         arena.setArenaState(new PreliminarArenaState(arena));
-        notifyAll();
     }
 }

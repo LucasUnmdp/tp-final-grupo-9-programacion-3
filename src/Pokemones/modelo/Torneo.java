@@ -1,10 +1,12 @@
 package Pokemones.modelo;
 
 import Pokemones.modelo.arenastates.CerradoArenaState;
+import Pokemones.modelo.excepciones.TorneoParticipantesException;
 import Pokemones.modelo.excepciones.YaExisteEntrenadorException;
 import Pokemones.vista.Ventana;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Grupo9
@@ -18,6 +20,7 @@ public class Torneo {
 	public static final int cantidadDeHechizosMax=4;
 	private ArrayList<String> historial = new ArrayList<String>();
 	private ArrayList<Arena> arenas = new ArrayList<>();
+	private boolean enPreparacion = true;
 
     private Torneo(){
 		crearArenas();
@@ -82,34 +85,73 @@ public class Torneo {
 		participantes.remove(e);
 		Ventana.getInstance().actualizarTorneo(participantes);
 	}
+
+
+	public void siguienteEtapa() throws TorneoParticipantesException {
+		if(enPreparacion){
+			if(participantes.size() != cantidadDeEntrenadores)
+				throw new TorneoParticipantesException();
+			else{
+				enPreparacion = false;
+				bracketTorneo();
+			}
+		}else{
+			bracketTorneo();
+		}
+	}
+
 	/**
 	 * Este metodo realiza todos los cruces del torneo, octavos de final , cuartos de final, etc. Dependiendo de la cantidadDeEntrenadores. Realiza todos los enfrentamientos y guarda en el historial los resultados.
 	 * <b>Pre: </b>la cantidad de entrenadores en la lista de entrenadores es igual a la cantidadDeEntrenadores establecida<br>
 	 * <b>Post: </b>Se ejecuta el torneo<br>
 	 */
-	public void comienzaTorneo() {
-		ArrayList<Entrenador> participantes = new ArrayList<Entrenador>(this.participantes);
-		while(participantes.size()>1) {
-			System.out.println("\n***Nuevo bracket***\n");
-			for(int i=0;i<participantes.size();i+=2) {
-				Arena prox = arenaLibre();
-				while(prox==null){
-					try {
-						wait();
-						prox = arenaLibre();
-					} catch (InterruptedException e) { e.printStackTrace(); }
-				}
-				prox.setEntrenadores(participantes.get(i), participantes.get(i+1));
-			}
-			/*
-			for(Arena r: arenas) {
+	public void bracketTorneo() {
+		ArrayList<Pelea> peleas = new ArrayList<>();
 
-				participantes.remove(r.perdedor().getE());
-				System.out.println("Gano el entrenador " + r.ganador().getE().getNombre());
+		//System.out.println("\n***Nuevo bracket***\n");
+		Ventana.getInstance().appendAConsola("Comienza Bracket (Participantes: "+participantes.size());
+
+		for(int i=0;i<participantes.size();i+=2) {
+
+
+			//VIEJO
+			/*Arena prox = arenaLibre();
+			while(prox==null){
+				try {
+					wait();
+					prox = arenaLibre();
+				} catch (InterruptedException e) { e.printStackTrace(); }
 			}*/
+
+			Arena prox = arenaLibre();
+			if(prox == null){
+				prox = arenas.get(new Random().nextInt(arenas.size()-1));
+			}
+			//prox.setEntrenadores(participantes.get(i), participantes.get(i+1));
+			prox.setLibre(false);
+			Pelea p = new Pelea(prox);
+			p.setEntrenadores(participantes.get(i), participantes.get(i+1));
+			peleas.add(p);
+			p.setEnProgreso(true);
+			p.start();
 		}
-		System.out.println("\n\n****!!!!! El ganador del torneo es el entrenador "+participantes.get(0).getNombre()+" !!!!!****");
+
+		for(Pelea p : peleas){
+			p.imprimirLog();
+		}
+
+		for(Pelea p:peleas){
+			participantes.remove(p.getPerdedor().getE());
+		}
+
+		if(participantes.size()==1){
+			Ventana.getInstance().appendAConsola("EL GANADOR DEL TORNEO ES: "+participantes.get(0).getNombre());
+			enPreparacion = true;
+		}else {
+			Ventana.getInstance().actualizarTorneo(participantes);
+		}
 	}
+
 	public ArrayList<Entrenador> getParticipantes() {
 		return participantes;
 	}

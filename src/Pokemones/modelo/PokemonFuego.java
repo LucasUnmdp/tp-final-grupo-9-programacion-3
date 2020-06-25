@@ -26,9 +26,10 @@ public class PokemonFuego extends Pokemon {
 	 * Este metodo realiza una recarga de fuerza y vitalidad<br>
 	 * <b>Post: </b>El pokemon actual realizara una recarga<br>
 	 */
-	protected void recarga() {
+	protected String recarga() {
 		this.fuerza*=1.1;
 		this.vitalidad*=1.1;
+		return getNombre() + " recargó.";
 	}
 	/**
 	 * Este metodo sirve para que pokemon actual reciba damage<br>

@@ -35,13 +35,15 @@ public abstract class Pokemon implements IHechizable,Cloneable,IClasificable{
 	 * <b>Pre:</b> adversario debe ser distinto de null.
 	 * @param adversario
 	 */
-	public void ataca(Pokemon adversario) {
-		System.out.println(this.nombre+" ejecuta golpe Inicial");
+	public String ataca(Pokemon adversario) {
+		String logLocal = "";
+		logLocal = logLocal.concat(this.nombre+" ejecuta golpe Inicial\n");
 		golpeInicial(adversario);
-		System.out.println(this.nombre+" ejecuta Recarga");
+		logLocal = logLocal.concat(this.nombre+" ejecuta Recarga\n");
 		recarga();
-		System.out.println(this.nombre+" ejecuta golpe Final");
+		logLocal = logLocal.concat(this.nombre+" ejecuta golpe Final");
 		golpeFinal(adversario);
+		return logLocal;
 	}
 
 	/**
@@ -57,8 +59,8 @@ public abstract class Pokemon implements IHechizable,Cloneable,IClasificable{
 	/**
 	 * Hook para aquellos pokemones que tengan una recarga (opcional).
 	 */
-	protected void recarga() {
-		System.out.println("No logro recargar");
+	protected String recarga() {
+		return "No logro recargar";
 	}
 
 	protected abstract void golpeFinal(Pokemon adversario);
@@ -119,5 +121,11 @@ public abstract class Pokemon implements IHechizable,Cloneable,IClasificable{
 	@Override
 	public String toString() {
 		return nombre + " (" + getTipo() + ")";
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		System.out.println("Se elimina el pokemon: "+nombre);
 	}
 }

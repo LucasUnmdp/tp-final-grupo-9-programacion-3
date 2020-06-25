@@ -1,6 +1,7 @@
 package Pokemones.control;
 
 import Pokemones.modelo.*;
+import Pokemones.modelo.excepciones.TorneoParticipantesException;
 import Pokemones.modelo.excepciones.YaExisteEntrenadorException;
 import Pokemones.vista.Ventana;
 
@@ -8,9 +9,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class ControladorGeneral implements ActionListener, ListSelectionListener {
+public class ControladorGeneral implements ActionListener, ListSelectionListener, KeyListener {
     private static ControladorGeneral instance;
     //private Ventana ventana;
 
@@ -35,8 +38,15 @@ public class ControladorGeneral implements ActionListener, ListSelectionListener
             }else{
                 Ventana.getInstance().getCBGranRecarga().setEnabled(false);
             }
+        }else if(e.getActionCommand().equalsIgnoreCase("COMENZAR TORNEO")){
+            new Thread(() -> {
+                try {
+                    Torneo.getInstance().siguienteEtapa();
+                } catch (TorneoParticipantesException ex) {
+                    Ventana.getInstance().appendAConsola("El torneo debe tener exactamente "+Torneo.getInstance().getCantidadDeEntrenadores()+" participantes.");
+                }
+            }).start();
         }
-
     }
 
     private void agregarTorneo() {
@@ -139,6 +149,23 @@ public class ControladorGeneral implements ActionListener, ListSelectionListener
             Ventana.getInstance().actualizarPokemones(ent.getPokemones());
         }else{
             Ventana.getInstance().actualizarPokemones(new ArrayList<>());
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if(e.getExtendedKeyCode()==10){
+            agregarTorneo();
         }
     }
 }

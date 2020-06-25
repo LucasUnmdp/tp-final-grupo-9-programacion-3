@@ -28,9 +28,10 @@ public class PokemonAgua extends Pokemon {
 	 * La recarga de este Pokemon le sube un 10% su fuerza y vitalidad.
 	 */
 	@Override
-	protected void recarga() {
+	protected String recarga() {
 		this.fuerza*=1.1;
 		this.vitalidad*=1.1;
+		return getNombre() + " recargó.";
 	}
 
 	/**
