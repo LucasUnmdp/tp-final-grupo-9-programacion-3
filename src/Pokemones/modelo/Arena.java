@@ -6,21 +6,18 @@ package Pokemones.modelo;
  * formados por un Entrenador y su Pokemon. Estos combaten y se
  * determina un ganador y un perdedor.
  */
-public class Arena extends Thread{
+public class Arena {
 	private static int cantArenas = 0;
 	private String nombreArena;
 	private ArenaState state;
+
+	private Pelea peleaActual;
 
     private Equipo equipo1;
     private Equipo equipo2;
 
     private Equipo ganador;
     private Equipo perdedor;
-
-    @Override
-    public void run(){
-
-	}
 
 	public Arena() {// el entrenador tiene que tener almenos un pokemon
 		cantArenas++;

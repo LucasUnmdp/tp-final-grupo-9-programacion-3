@@ -1,6 +1,6 @@
 package Pokemones.modelo;
 
-import Pokemones.control.Controlador;
+import Pokemones.control.ControladorGeneral;
 import Pokemones.modelo.excepciones.YaExisteEntrenadorException;
 import Pokemones.vista.Ventana;
 
@@ -39,8 +39,9 @@ public class Lobby {
 	}
 
 	private Lobby(){
-	    Controlador.getInstance();
-	    Ventana.getInstance();
+	    ControladorGeneral.getInstance();
+	    Ventana.getInstance().inicializar();
+	    Torneo.getInstance().inicializar();
         ventana = Ventana.getInstance();
         ventana.setVisible(true);
         listaEntrenadores = new ArrayList<>();

@@ -1,6 +1,5 @@
 Pokemones\modelo\PeleaNulaException.class
 Pokemones\modelo\Lobby.class
-Pokemones\control\Controlador.class
 Pokemones\modelo\DefinicionArenaState.class
 Pokemones\modelo\Equipo.class
 Pokemones\modelo\Torneo.class
@@ -9,6 +8,7 @@ Pokemones\modelo\LimiteDeHechizoException.class
 Pokemones\modelo\PreliminarArenaState.class
 Pokemones\modelo\CerradoArenaState.class
 Pokemones\modelo\LimpiezaArenaState.class
+Pokemones\modelo\Pelea.class
 Pokemones\modelo\PokemonFactory.class
 Pokemones\modelo\IClasificable.class
 Pokemones\modelo\Pokemon.class
@@ -16,9 +16,11 @@ Pokemones\modelo\PokemonPlanta.class
 Pokemones\vista\Ventana.class
 Pokemones\modelo\Arena.class
 Pokemones\modelo\IHechizable.class
+Pokemones\control\ControladorGeneral.class
 Pokemones\modelo\PokemonFuego.class
 Pokemones\modelo\PokemonFantasma.class
 Pokemones\modelo\PokemonAgua.class
+Pokemones\control\ControladorItem.class
 Pokemones\modelo\excepciones\YaExisteEntrenadorException.class
 Pokemones\modelo\ArenaState.class
 Pokemones\modelo\BatallaArenaState.class

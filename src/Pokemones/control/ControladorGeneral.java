@@ -3,17 +3,15 @@ package Pokemones.control;
 import Pokemones.modelo.*;
 import Pokemones.modelo.excepciones.YaExisteEntrenadorException;
 import Pokemones.vista.Ventana;
-import sun.awt.OverrideNativeWindowHandle;
 
-import javax.naming.ldap.Control;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Controlador implements ActionListener, ListSelectionListener {
-    private static Controlador instance;
+public class ControladorGeneral implements ActionListener, ListSelectionListener {
+    private static ControladorGeneral instance;
     //private Ventana ventana;
 
     @Override
@@ -128,9 +126,9 @@ public class Controlador implements ActionListener, ListSelectionListener {
         }
     }
 
-    public static Controlador getInstance(){
+    public static ControladorGeneral getInstance(){
         if(instance == null)
-            instance = new Controlador();
+            instance = new ControladorGeneral();
         return instance;
     }
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Torneo {
 	private static Torneo instance =null;
-	private int cantidadDeEntrenadores=8 ;
+	private int cantidadDeEntrenadores;
 	private ArrayList<Entrenador> participantes = new ArrayList<Entrenador>();
 	public static final int cantidadDeHechizosMax=4;
 	private ArrayList<String> historial = new ArrayList<String>();
@@ -21,6 +21,11 @@ public class Torneo {
     private Torneo(){
 		crearArenas();
 	}
+
+	public void inicializar(){
+    	setCantidadDeEntrenadores(8);
+	}
+
 	/**
 	 * La clase torneo responde al patron singleton.
 	 */
@@ -64,6 +69,7 @@ public class Torneo {
 	 */
 	public void setCantidadDeEntrenadores(int cantidadDeEntrenadores) {
 		this.cantidadDeEntrenadores = cantidadDeEntrenadores;
+		Ventana.getInstance().setCantParticipantes(cantidadDeEntrenadores, true);
 	}
 	
 	/**
@@ -93,7 +99,6 @@ public class Torneo {
 					} catch (InterruptedException e) { e.printStackTrace(); }
 				}
 				prox.setEntrenadores(participantes.get(i), participantes.get(i+1));
-				prox.start();
 			}
 			/*
 			for(Arena r: arenas) {
