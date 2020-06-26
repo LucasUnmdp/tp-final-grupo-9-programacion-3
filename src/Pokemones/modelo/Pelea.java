@@ -6,7 +6,11 @@ import sun.awt.image.ImageWatched;
 
 import java.util.LinkedList;
 import java.util.Random;
-
+/**
+ * @author Grupo 9
+ *<br>
+ *Clase que representa una pelea dentro de una arena.
+ */
 public class Pelea extends Thread {
     private Arena arena;
     private Entrenador en1, en2;
@@ -16,7 +20,10 @@ public class Pelea extends Thread {
     private Equipo perdedor;
 
     private boolean enProgreso = false;
-
+    /**
+     * Constructor con el parametro Arena.
+     * @param a Arena donde se lleva acabo la pelea.
+     */
     public Pelea(Arena a){
         arena = a;
         arena.setPeleaActual(this);
@@ -33,7 +40,10 @@ public class Pelea extends Thread {
             realizarPelea();
         }
     }
-
+    /**
+     * Metodo que se encarga de avanzar en cada etapa de la pelea y cambiar los estados de la arena donde
+     * se esta peleando. Esta tiene un sleep el cual "simula" un tiempo de batalla.
+     */
     private synchronized void realizarPelea(){
         try{
             Thread.sleep(500 + new Random().nextInt(1000)); //Para simular el tiempo de la pelea
@@ -49,11 +59,15 @@ public class Pelea extends Thread {
         enProgreso = false;
         notifyAll();
     }
-
+    /**
+     * Metodo que lleva al dia un registro de las pelea
+     */
     public void log(String linea){
         log.add(linea);
     }
-
+    /**
+     * Metodo que imprime el registro de toda la pelea.
+     */
     public synchronized void imprimirLog(){
         while(enProgreso){
             try {

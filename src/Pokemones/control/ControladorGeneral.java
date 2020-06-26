@@ -12,7 +12,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
+/**
+ * @author Grupo 9
+ *<br>
+ *Clase controlador que se encarga de escuchar todos los ActionCommand, de verificar la informacion
+ * introducida por el usuario, utilizar el modelo y actualizar la ventana.
+ */
 public class ControladorGeneral implements ActionListener, ListSelectionListener, KeyListener {
     private static ControladorGeneral instance;
     //private Ventana ventana;

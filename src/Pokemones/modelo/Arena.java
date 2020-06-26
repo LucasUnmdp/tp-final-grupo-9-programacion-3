@@ -7,7 +7,7 @@ import Pokemones.modelo.excepciones.PeleaNulaException;
 
 /**
  * @author Grupo 9 
- * Objeto representativo de una ronda. Consiste en dos equipos
+ * Objeto representativo de una arena. Consiste en dos equipos
  * formados por un Entrenador y su Pokemon. Estos combaten y se
  * determina un ganador y un perdedor.
  */

@@ -24,7 +24,11 @@ import javax.swing.UIManager;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
 import javax.swing.text.DefaultCaret;
-
+/**
+ * @author Grupo 9
+ *<br>
+ *Clase que tiene todos los componentes de la interfaz grafica.
+ */
 public class Ventana extends JFrame {
 	private static Ventana instance;
 	private ControladorGeneral controladorGeneral;
